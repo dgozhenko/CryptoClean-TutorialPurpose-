@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct CryptoExchangeView: View {
+  // Question: Why you initializing your view model directly?
     @StateObject private var viewModel = ViewModel()
     var body: some View {
         LoadingView(isShowing: $viewModel.loading) {
             VStack {
                 VStack {
+                  // Question: Why amount is in $?
+
+                  // Question: What is wrong here with the stepper value range validation?
                     Stepper("Amount: \(Int(viewModel.amount))$", value: $viewModel.amount, step: 100)
                     Slider(value: $viewModel.amount, in: 1...10000)
                 }
@@ -23,6 +27,9 @@ struct CryptoExchangeView: View {
                         Text(rateItem.shortCurrencyCode)
                             .bold()
                         Spacer()
+                      // Question: Why you are thinking that you are displaying rate in $?
+                      // Question: Why your view has knowledge about exact currency?
+                      // Question: What business logic error you have here?
                         Text("$\(viewModel.calculateRate(rate: rateItem), specifier: "%.2f")")
                     }
                 }
