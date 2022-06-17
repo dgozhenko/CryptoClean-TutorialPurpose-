@@ -11,6 +11,7 @@ enum UseCaseError: Error {
     case networkError, decodingError
 }
 
+// This protocol is never used, why?
 protocol GetCryptoList {
     func execute(currency: String, previewMode: Bool) async -> Result<Crypto, UseCaseError>
 }
