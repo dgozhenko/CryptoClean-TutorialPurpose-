@@ -16,7 +16,9 @@ protocol GetCryptoList {
     func execute(currency: String, previewMode: Bool) async -> Result<Crypto, UseCaseError>
 }
 
+// Question: What is the purpose of UseCase class? I see that it is just wrapping repository, what is the reason to use it?
 struct GetCryptoListUseCase: GetCryptoList {
+  // Question: Why repository is var?
     var repository: CryptoRepository
     
     func execute(currency: String, previewMode: Bool) async -> Result<Crypto, UseCaseError> {
